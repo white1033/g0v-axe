@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import codecs
 import json
 import requests
 from pyquery import PyQuery as pq
@@ -16,4 +17,5 @@ for row in html('table.table tr')[1:]:
         'grades': dict(zip(subjects, map(int, elements[1:])))
     })
 
-print(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+with codecs.open('output.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False)

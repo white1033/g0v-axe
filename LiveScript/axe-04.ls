@@ -20,5 +20,5 @@ tasks = for let i in [1 to 24]
       row .= next!
     cb null d
 
-err, data <- async.series tasks
+err, data <- async.parallel tasks
 data |> flatten |> JSON.stringify |> fs.write-file-sync 'output.json', _

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import codecs
 import json
 import requests
 from pyquery import PyQuery as pq
@@ -22,4 +23,5 @@ for i in range(1, 25):
         elements = [element.text for element in row]
         data.append(dict(zip(columns, elements)))
 
-print(json.dumps(data, ensure_ascii=False).encode('utf-8'))
+with codecs.open('output.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False)
